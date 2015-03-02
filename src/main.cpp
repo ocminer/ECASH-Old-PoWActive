@@ -928,32 +928,17 @@ uint256 WantedByOrphan(const CBlock* pblockOrphan)
 // miner's coin base reward based on nBits
 int64 GetProofOfWorkReward(int nHeight, int64 nFees, uint256 prevHash)
 {
-
-    int64 nSubsidy = 0 * COIN;
-    
-   if (pindexBest->nHeight+1 == 1)
-    {
-      nSubsidy = 40000 * COIN;
-      return nSubsidy;
+    int64 nSubsidy = 0;
+    if (hashPrevBlock == hashGenesisBlock) {
+    	nSubsidy = 40000 * COIN;
     }
-    
-	else if (pindexBest->nHeight+1 >= 2)
-	{
-	nSubsidy = 750 * COIN;
-	return nSubsidy;
-	}
-
-    else if (pindexBest->nHeight+1 >= 1440)
-    {
-      nSubsidy = 600 * COIN;
-      return nSubsidy;
+    if (nHeight <= 1439) {
+    	nSubsidy = 750 * COIN;
     }
- 
-   else if (pindexBest->nHeight+1 >= 6200)
-    {
-      nSubsidy = 0 * COIN;
-      return nSubsidy;
+    if (nHeight <= 7000) {
+    	nSubsidy = 600 * COIN;
     }
+    return nSubsidy;
 }
 
 // miner's coin stake reward based on nBits and coin age spent (coin-days)
