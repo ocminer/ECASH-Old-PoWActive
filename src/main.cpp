@@ -929,15 +929,15 @@ uint256 WantedByOrphan(const CBlock* pblockOrphan)
 int64 GetProofOfWorkReward(int nHeight, int64 nFees, uint256 prevHash)
 {
     int64 nSubsidy = 0;
-    if (nHeight == 1) {
+    if (nHeight == 1)
     	nSubsidy = 40000 * COIN;
-    }
-    if (nHeight <= 1439) {
+  
+    if (nHeight <= 1439) 
     	nSubsidy = 750 * COIN;
-    }
-    if (nHeight <= 7000) {
+    
+    if (nHeight <= 7000) 
     	nSubsidy = 600 * COIN;
-    }
+    
     return nSubsidy;
 }
 
